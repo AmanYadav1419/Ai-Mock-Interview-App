@@ -60,7 +60,7 @@ export default function Page() {
               </a>
 
               <h1 class="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-                Welcome to Squid 🦑
+              Welcome to Ai Mock Interview 💻
               </h1>
 
               <p class="mt-4 leading-relaxed text-gray-500">
