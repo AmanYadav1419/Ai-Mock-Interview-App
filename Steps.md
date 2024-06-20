@@ -13,3 +13,4 @@
 7.create (auth) folder name should be same as i typed and create signUp and sign-in pages in that,for code check clerk/nextjs documentation with having custom sign in/sign up page
 8.do steps just given in the documentation
 9. Create folder in dashboard named "_components" and in that create Header.jsx file and write code for header of App
+<!-- video start from 42:25 -->
