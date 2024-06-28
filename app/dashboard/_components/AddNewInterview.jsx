@@ -20,6 +20,7 @@ import { MockInterview } from "@/utils/schema";
 import { v4 as uuidv4 } from "uuid";
 import { useUser } from "@clerk/nextjs";
 import moment from "moment/moment";
+import { useRouter } from "next/navigation";
 
 const AddNewInterview = () => {
   // create states to store data
@@ -29,6 +30,9 @@ const AddNewInterview = () => {
   const [jobExperience, setJobExperience] = useState();
   const [loading, setLoading] = useState(false);
   const [JsonResponse, setJsonResponse] = useState([]);
+
+  // router for routing to different page
+  const router = useRouter();
 
   // user details for createdBy
   const { user } = useUser();
@@ -88,13 +92,16 @@ const AddNewInterview = () => {
         .returning({ mockId: MockInterview.mockId });
 
       console.log("Inserted ID :", resp);
-      
+
       // to close the dialog after response is true
       if (resp) {
         setOpenDailog(false);
-      }
 
-    } else {
+        // once we have the response we need to navigate to route i.e it is dynamic route. by using mockid we can do it
+        router.push("/dashboard/interview/" + resp[0]?.mockId);
+      }
+    } 
+    else {
       console.log("ERROR");
     }
 
