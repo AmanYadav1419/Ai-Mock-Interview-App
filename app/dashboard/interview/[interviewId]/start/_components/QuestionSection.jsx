@@ -1,8 +1,19 @@
-import { Lightbulb } from "lucide-react";
+import { Lightbulb, Volume2 } from "lucide-react";
 import React from "react";
 
 const QuestionSection = ({ mockInterviewQuestion, activeQuestionIndex }) => {
   // why we use in mockInterviewQuestion bcz it will check if it is avaialble then it will render
+
+  // for text to speech
+  const textToSpeech = (text) => {
+    if ("speechSynthesis" in window) {
+      const speech = SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(speech);
+    } else {
+      alert("Sorry, Your broswer does not support text to speech");
+    }
+  };
+
   return (
     mockInterviewQuestion && (
       <div className="p-5 border rounded-lg my-10">
@@ -23,6 +34,13 @@ const QuestionSection = ({ mockInterviewQuestion, activeQuestionIndex }) => {
         <h2 className="my-5 text-md md:text-lg">
           {mockInterviewQuestion[activeQuestionIndex]?.question}
         </h2>
+        {/* for text to speech  */}
+        <Volume2
+          className="cursor-pointer"
+          onClick={() =>
+            textToSpeech(mockInterviewQuestion[activeQuestionIndex]?.question)
+          }
+        />
 
         <div className="border rounded-lg p-5 bg-blue-100 mt-20">
           <h2 className="flex gap-2 items-center text-primary">
