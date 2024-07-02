@@ -22,4 +22,3 @@ export const UserAnswer = pgTable("userAnswer", {
   userEmail: varchar("userEmail"),
   createdAt: varchar("createdAt"),
 });
-// video started from 2:44:02
