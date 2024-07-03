@@ -34,6 +34,7 @@ const RecordAnswerSection = ({
     results,
     startSpeechToText,
     stopSpeechToText,
+    setResults,
   } = useSpeechToText({
     continuous: true,
     useLegacyResults: false,
@@ -66,7 +67,7 @@ const RecordAnswerSection = ({
       //   return;
       // }
       // set user answer blank after it successful
-      setUserAnswer("");
+      // setUserAnswer("");
     } else {
       startSpeechToText();
     }
@@ -116,8 +117,13 @@ const RecordAnswerSection = ({
     // show toast notification when user sucessful
     if (resp) {
       toast("User Answer Recorded Sucessfully!");
+      // for storing next answer it should be blank or empty
+      setUserAnswer("");
+      // for storing next result it should be empty after storing prev answer
+      setResults([]);
     }
-    setUserAnswer("");
+    setResults([]);
+
     setLoading(false);
   };
 

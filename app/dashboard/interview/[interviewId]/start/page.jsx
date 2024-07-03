@@ -6,12 +6,14 @@ import { eq } from "drizzle-orm";
 import React, { useEffect, useState } from "react";
 import QuestionSection from "./_components/QuestionSection";
 import RecordAnswerSection from "./_components/RecordAnswerSection";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const StartInterview = ({ params }) => {
   // state for question and answer
   const [interviewData, setInterviewData] = useState();
   const [mockInterviewQuestion, setMockInterviewQuestion] = useState();
-  // for active question
+  // for active question index
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
 
   useEffect(() => {
@@ -52,6 +54,35 @@ const StartInterview = ({ params }) => {
           mockInterviewQuestion={mockInterviewQuestion}
           interviewData={interviewData}
         />
+      </div>
+      <div className="flex justify-end gap-6">
+        {/* previous question only show if question index is greater than 1 i.e 2nd question */}
+        {activeQuestionIndex > 0 && (
+          <Button
+            // logic for previous question working
+            onClick={() => setActiveQuestionIndex(activeQuestionIndex - 1)}
+          >
+            Previous Question
+          </Button>
+        )}
+
+        {/* next question is not appear when last question is there */}
+        {activeQuestionIndex != mockInterviewQuestion?.length - 1 && (
+          <Button
+            // logic for next question working
+            onClick={() => setActiveQuestionIndex(activeQuestionIndex + 1)}
+          >
+            Next Question
+          </Button>
+        )}
+
+        {/* end interview button show when there is last question */}
+        {activeQuestionIndex == mockInterviewQuestion?.length - 1 && (
+          // route for feedback for particular mockid once user finish the interview then onclick o btn it will redirect to feedback route
+          <Link href={'/dashboard/interview/'+interviewData?.mockId+"/feedback"}>
+            <Button>End Interview</Button>
+          </Link>
+        )}
       </div>
     </div>
   );
