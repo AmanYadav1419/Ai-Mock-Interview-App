@@ -21,6 +21,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useUser } from "@clerk/nextjs";
 import moment from "moment/moment";
 import { useRouter } from "next/navigation";
+import { Input } from "@/components/ui/input";
 
 const AddNewInterview = () => {
   // create states to store data
@@ -100,8 +101,7 @@ const AddNewInterview = () => {
         // once we have the response we need to navigate to route i.e it is dynamic route. by using mockid we can do it
         router.push("/dashboard/interview/" + resp[0]?.mockId);
       }
-    } 
-    else {
+    } else {
       console.log("ERROR");
     }
 
@@ -173,8 +173,8 @@ const AddNewInterview = () => {
                     {/* for loading if true then show loading ui */}
                     {
                       <>
-                        loading ? <LoaderCircle className="animate-spin" />{" "}
-                        'Generating From AI' : 'Start Interview'
+                        loading ? <LoaderCircle className="animate-spin" />
+                        "Generating From AI" : "Start Interview"
                       </>
                     }
                   </Button>
