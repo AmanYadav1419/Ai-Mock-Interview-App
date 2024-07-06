@@ -42,10 +42,10 @@ const Feedback = ({ params }) => {
 
   return (
     <div className="p-10">
-      {/* if feedback is empty then show  no feedback */}
-      {feedbackList.length == 0 ? (
-        <h2 className="font-bold text-xl text-gray-500">
-          No Interview Feedback Found!
+      {/* if feedback is empty then show no feedback found */}
+      {feedbackList?.length == 0 ? (
+        <h2 className="font-bold text-xl text-gray-500 text-center mb-5 mt-5">
+          No Interview Feedback Record Found!
         </h2>
       ) : (
         // otherwise if feedback is present then show feedbacks
@@ -59,7 +59,7 @@ const Feedback = ({ params }) => {
           </h2>
 
           {/* need improvment from hardcoded data to dynamic data representation */}
-          
+
           {/* <h2 className="text-primary text-lg my-3">
             Your Overall Interview Rating: <strong>7/10</strong>{" "}
           </h2> */}
