@@ -42,54 +42,71 @@ const Feedback = ({ params }) => {
 
   return (
     <div className="p-10">
-      <h2 className="text-3xl font-bold text-green-500">Congratulations!</h2>
-      <h2 className="font-bold text-2xl">Here is Your Interview Feedback</h2>
-      <h2 className="text-primary text-lg my-3">
-        Your Overall Interview Rating: <strong>7/10</strong>{" "}
-      </h2>
+      {/* if feedback is empty then show  no feedback */}
+      {feedbackList.length == 0 ? (
+        <h2 className="font-bold text-xl text-gray-500">
+          No Interview Feedback Found!
+        </h2>
+      ) : (
+        // otherwise if feedback is present then show feedbacks
+        <>
+          <h2 className="text-3xl font-bold text-green-500">
+            Congratulations!
+          </h2>
 
-      <h2 className="text-sm text-gray-500">
-        Find Below Interview Question with correct answer, Your answer and
-        feedback for improvment.
-      </h2>
+          <h2 className="font-bold text-2xl">
+            Here is Your Interview Feedback
+          </h2>
 
-      {/* iterate the feedbacklist */}
-      {feedbackList &&
-        feedbackList.map((item, index) => (
-          <Collapsible key={index} className="mt-7">
-            <CollapsibleTrigger className="p-2 bg-secondary flex justify-between rounded-lg my-2 text-left gap-7 w-full">
-              {item.question} <ChevronsUpDown className="h-5 w-5" />
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <div className="flex flex-col gap-2">
-                {/* for rating */}
-                <h2 className="text-red-500 p-2 border rounded-lg">
-                  <strong>Rating:</strong>
-                  {item.rating}
-                </h2>
-                
-                {/* for user answer */}
-                <h2 className="p-2 border rounded-lg bg-red-50 text-sm text-red-900">
-                  <strong>Your Answer: </strong>
-                  {item.UserAns}
-                </h2>
+          {/* need improvment from hardcoded data to dynamic data representation */}
+          
+          {/* <h2 className="text-primary text-lg my-3">
+            Your Overall Interview Rating: <strong>7/10</strong>{" "}
+          </h2> */}
 
-                {/* for corrected answer from ai */}
-                <h2 className="p-2 border rounded-lg bg-green-50 text-sm text-green-900">
-                  <strong>Correct Answer: </strong>
-                  {item.correctAns}
-                </h2>
+          <h2 className="text-sm text-gray-500">
+            Find Below Interview Question with correct answer, Your answer and
+            feedback for improvment.
+          </h2>
 
-                {/* feedback or imporment from ai to user */}
-                <h2 className="p-2 border rounded-lg bg-blue-50 text-sm text-primary">
-                  <strong>Feedback: </strong>
-                  {item.feedback}
-                </h2>
-              </div>
-            </CollapsibleContent>
-          </Collapsible>
-        ))}
+          {/* iterate the feedbacklist */}
+          {feedbackList &&
+            feedbackList.map((item, index) => (
+              <Collapsible key={index} className="mt-7">
+                <CollapsibleTrigger className="p-2 bg-secondary flex justify-between rounded-lg my-2 text-left gap-7 w-full">
+                  {item.question} <ChevronsUpDown className="h-5 w-5" />
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <div className="flex flex-col gap-2">
+                    {/* for rating */}
+                    <h2 className="text-red-500 p-2 border rounded-lg">
+                      <strong>Rating:</strong>
+                      {item.rating}
+                    </h2>
 
+                    {/* for user answer */}
+                    <h2 className="p-2 border rounded-lg bg-red-50 text-sm text-red-900">
+                      <strong>Your Answer: </strong>
+                      {item.UserAns}
+                    </h2>
+
+                    {/* for corrected answer from ai */}
+                    <h2 className="p-2 border rounded-lg bg-green-50 text-sm text-green-900">
+                      <strong>Correct Answer: </strong>
+                      {item.correctAns}
+                    </h2>
+
+                    {/* feedback or imporment from ai to user */}
+                    <h2 className="p-2 border rounded-lg bg-blue-50 text-sm text-primary">
+                      <strong>Feedback: </strong>
+                      {item.feedback}
+                    </h2>
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
+            ))}
+        </>
+      )}
       {/* redirect to home page  or dashboard button  */}
       <Button onClick={() => router.replace("/dashboard")}>Go Home</Button>
     </div>
